@@ -1,0 +1,42 @@
+﻿<Window x:Class="GameBase.Views.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:char="clr-namespace:GameBase.ViewModels.Elements.Characters"
+    xmlns:tileset="clr-namespace:GameBase.ViewModels.Elements.Tilesets"
+    xmlns:charView="clr-namespace:GameBase.Views.Characters"
+	Title="GameBase.Views" Height="300" Width="300" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+	
+    <Window.Background>  
+        <ImageBrush ImageSource="{Binding Mundo.Panorama, Converter={StaticResource RelativePathToAbsolutePath}}"/>     
+    </Window.Background>
+	
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding MovePlayer1LeftCommand}" Key="Left" />
+		<KeyBinding Command="{Binding MovePlayer1RightCommand}" Key="Right" />
+		<KeyBinding Command="{Binding MovePlayer1UpCommand}" Key="Up" />
+		<KeyBinding Command="{Binding MovePlayer1DownCommand}" Key="Down" />
+    </Window.InputBindings>
+
+	<Grid>
+		<ItemsControl ItemsSource="{Binding Mundo.Elementos}">
+	        <ItemsControl.ItemsPanel>
+	            <ItemsPanelTemplate>
+	                <Grid />
+	            </ItemsPanelTemplate>
+	        </ItemsControl.ItemsPanel>
+			
+		    <ItemsControl.Resources>
+	            <DataTemplate DataType="{x:Type char:Ator}">
+	        		<charView:AtorView>
+	            		<charView:AtorView.Margin>
+		        			<MultiBinding Converter="{StaticResource PosToMarginConverter}">
+								<Binding Path="PosX" />
+								<Binding Path="PosY" />
+							</MultiBinding>
+	        			</charView:AtorView.Margin>
+	            	</charView:AtorView>
+	            </DataTemplate>
+		    </ItemsControl.Resources>
+		</ItemsControl>
+	</Grid>
+</Window>

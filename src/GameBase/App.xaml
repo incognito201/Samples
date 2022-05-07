@@ -1,0 +1,11 @@
+﻿<Application x:Class="GameBase.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converters="clr-namespace:GameBase.Converters"
+	StartupUri="Views/MainWindow.xaml">
+	<Application.Resources>
+		<converters:FrameBitmapConverter x:Key="FrameBitmapConverter" />
+		<converters:PosToMarginConverter x:Key="PosToMarginConverter" />
+		<converters:RelativePathToAbsolutePath x:Key="RelativePathToAbsolutePath" />
+	</Application.Resources>
+</Application>
